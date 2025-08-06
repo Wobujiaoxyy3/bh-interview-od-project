@@ -1,0 +1,12 @@
+[project]
+name = "bh-interview-od-project"
+version = "0.1.0"
+description = "Solution for the Buro Happold KTP Associate Interview Object Detection Task."
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "pillow",
+    "torch",
+    "torchvision"
+]
