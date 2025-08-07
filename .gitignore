@@ -7,3 +7,4 @@ data/
 !data/raw/images/.gitkeep
 !data/interim/.gitkeep
 !data/processed/.gitkeep
+!src/data/
