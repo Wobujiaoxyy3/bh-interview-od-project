@@ -1,0 +1,96 @@
+# Base Configuration for Floor Plan Object Detection
+# This file contains common settings shared across all model configurations
+
+# Project configuration
+project:
+  name: 'floor-plan-object-detection'
+  description: 'Buro Happold KTP Associate Interview - Floor Plan Object Detection'
+  version: '1.0.0'
+  author: 'Tianyang Huang'
+
+# Data configuration
+data:
+  images_dir: 'data/raw/images'
+  annotations_file: 'data/processed/2.0-coco_annotations_cleaned.json'
+  splits_dir: 'data/processed/splits'
+
+# Data splitting configuration
+data_splitting:
+  train_ratio: 0.7
+  val_ratio: 0.2
+  test_ratio: 0.1
+  stratified: true
+  random_state: 42
+
+# Preprocessing configuration
+preprocessing:
+  target_size: 800
+  pad_color: [128, 128, 128]
+  apply_clahe: true
+  clahe_clip_limit: 2.0
+  clahe_tile_grid_size: [8, 8]
+  convert_to_grayscale: false
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+
+# Augmentation configuration
+augmentation:
+  apply_rotation: false
+  rotation_probability: 0.3
+  apply_flip: false
+  horizontal_flip_probability: 0.5
+  vertical_flip_probability: 0.1
+
+# Data loader configuration
+data_loader:
+  batch_size: 4
+  num_workers: 4
+  pin_memory: true
+  drop_last: false
+
+# Training configuration
+training:
+  num_epochs: 50
+  validate_every: 1
+  save_every: 5
+  log_every: 10
+  gradient_clipping: 1.0
+
+# Optimizer configuration
+optimizer:
+  type: 'adamw'
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-4
+  betas: [0.9, 0.999]
+  eps: 1.0e-8
+
+# Scheduler configuration
+scheduler:
+  use_scheduler: true
+  type: 'step'
+  step_size: 20
+  gamma: 0.1
+  patience: 5
+  min_lr: 1.0e-6
+
+# Evaluation configuration
+evaluation:
+  confidence_threshold: 0.5
+  iou_thresholds: [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
+
+# Output configuration
+output_dir: 'outputs'
+experiment_name: 'floor_plan_detection'
+
+# Device configuration
+device: 'cuda'  # Will fallback to 'cpu' if CUDA is not available
+
+# Logging configuration
+use_wandb: false
+wandb:
+  project: 'floor-plan-detection'
+  entity: null
+  tags: []
+
+# Random seed for reproducibility
+random_seed: 42

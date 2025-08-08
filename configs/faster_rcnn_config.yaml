@@ -1,0 +1,117 @@
+# Faster R-CNN Configuration
+
+# Project configuration
+project:
+  name: 'floor-plan-object-detection'
+  description: 'Buro Happold KTP Associate Interview - Floor Plan Object Detection'
+  version: '1.0.0'
+  author: 'Tianyang Huang'
+
+# Inherit base configuration
+base_config: "base_config.yaml"
+
+# Model configuration
+model:
+  architecture: 'faster_rcnn'
+  model_type: 'simple'
+  num_classes: 4
+  
+  # Backbone configuration
+  backbone: 'mobilenet_v3_large'  # Options: 'resnet50', 'resnet101', 'mobilenet_v3_large', 'mobilenet_v3_small'
+  pretrained: False  # CRITICAL: Use pretrained weights for faster convergence
+  trainable_backbone_layers: 5  # Freeze early layers, train last 3 layers for better stability
+
+  # Model name (will be determined by backbone choice)
+  model_name: 'fasterrcnn_mobilenet_v3_large_fpn'  # Automatically set based on backbone
+  
+  # Faster R-CNN specific parameters
+  rpn_score_thresh: 0.0
+  rpn_nms_thresh: 0.7
+  box_score_thresh: 0.05
+  box_nms_thresh: 0.5
+  box_detections_per_img: 100
+
+# Data configuration
+data:
+  images_dir: 'data/raw/images'
+  annotations_file: 'data/processed/2.0-coco_annotations_cleaned.json'
+  splits_dir: 'data/processed/splits'
+
+# Data splitting configuration
+data_splitting:
+  train_ratio: 0.7
+  val_ratio: 0.2
+  test_ratio: 0.1
+
+# Preprocessing configuration
+preprocessing:
+  target_size: 800
+  pad_color: [128, 128, 128]
+  apply_clahe: true
+  clahe_clip_limit: 2.0
+  clahe_tile_grid_size: [8, 8]
+  convert_to_grayscale: false
+  apply_noise: false
+  gaussian_noise_std: 10.0
+  gaussian_noise_probability: 0.3
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+
+# Augmentation configuration - DISABLED for debugging
+augmentation:
+  apply_rotation: false
+  rotation_probability: 0.0
+  rotation_angles: [0, 90, 180, 270]
+  apply_flip: false
+  horizontal_flip_probability: 0.0
+  vertical_flip_probability: 0.0
+
+# Training configuration
+training:
+  num_epochs: 150
+  save_every: 5
+  validate_every: 1
+  log_every: 10
+  gradient_clipping: 1.0
+
+# Optimizer configuration 
+optimizer:
+  type: "adamw"
+  learning_rate: 2e-5
+  weight_decay: 1e-4
+  betas: [0.9, 0.999]
+
+# Scheduler configuration
+scheduler:
+  use_scheduler: true
+  type: "reduce_on_plateau"
+  mode: "max"
+  factor: 0.5
+  patience: 10
+  min_lr: 1e-6
+
+# Data loader configuration
+data_loader:
+  batch_size: 8
+  num_workers: 0  # Set to 0 for Windows to avoid multiprocessing issues
+  pin_memory: true
+
+# Evaluation configuration
+evaluation:
+  confidence_threshold: 0.05
+  nms_threshold: 0.5
+
+# System configuration - 
+device: 'auto' 
+random_seed: 42
+output_dir: 'outputs/faster_rcnn'
+
+# Use Albumentations for transforms
+use_albumentations: true
+
+# Experiment tracking
+use_wandb: false
+wandb:
+  project: 'floor-plan-detection'
+  run_name: 'faster_rcnn'
+  tags: ['faster_rcnn']
