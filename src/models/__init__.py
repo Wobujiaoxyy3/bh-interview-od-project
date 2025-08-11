@@ -5,4 +5,5 @@ from .retinanet import FloorPlanRetinaNet, SimpleRetinaNet, FocalLoss, create_re
 
 __all__ = [
     'FloorPlanFasterRCNN', 'SimpleFasterRCNN', 'create_faster_rcnn_model', 'load_faster_rcnn_checkpoint',
+    'FloorPlanRetinaNet', 'SimpleRetinaNet', 'FocalLoss', 'create_retinanet_model', 'load_retinanet_checkpoint'
 ]
