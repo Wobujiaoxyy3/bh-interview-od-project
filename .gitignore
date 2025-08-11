@@ -2,9 +2,12 @@
 __pycache__/
 *.pyc
 
-data/
+data/*
 !data/raw/annotation_file/.gitkeep
 !data/raw/images/.gitkeep
 !data/interim/
+data/interim/annotation_file/*
+
+!data/interim/annotation_file/.gitkeep  
 !data/processed/
 !src/data/
