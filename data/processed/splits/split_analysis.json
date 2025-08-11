@@ -1,0 +1,58 @@
+{
+  "total_images": 2681,
+  "train_images": 1875,
+  "val_images": 536,
+  "test_images": 270,
+  "class_distribution": {
+    "3": {
+      "total": 28714,
+      "train": {
+        "count": 19959,
+        "ratio": 0.6950964686215784
+      },
+      "val": {
+        "count": 5749,
+        "ratio": 0.200215922546493
+      },
+      "test": {
+        "count": 3006,
+        "ratio": 0.10468760883192868
+      }
+    },
+    "2": {
+      "total": 19236,
+      "train": {
+        "count": 13376,
+        "ratio": 0.695362861301726
+      },
+      "val": {
+        "count": 3781,
+        "ratio": 0.19655853607818674
+      },
+      "test": {
+        "count": 2079,
+        "ratio": 0.10807860262008734
+      }
+    },
+    "1": {
+      "total": 28339,
+      "train": {
+        "count": 19744,
+        "ratio": 0.6967077172800734
+      },
+      "val": {
+        "count": 5605,
+        "ratio": 0.19778397261724126
+      },
+      "test": {
+        "count": 2990,
+        "ratio": 0.10550831010268534
+      }
+    }
+  },
+  "split_files": {
+    "train": "data\\processed\\splits\\train_annotations.json",
+    "val": "data\\processed\\splits\\val_annotations.json",
+    "test": "data\\processed\\splits\\test_annotations.json"
+  }
+}

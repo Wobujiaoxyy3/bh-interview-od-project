@@ -1,0 +1,29 @@
+============================================================
+YOLO TO COCO CONVERSION VALIDATION REPORT
+============================================================
+
+1. DATA COMPLETENESS
+------------------------------
+Expected images: 2681
+Converted images: 2681
+Missing images: 0
+Expected annotations: 76316
+Converted annotations: 76316
+
+2. COORDINATE CONVERSION
+------------------------------
+Samples tested: 3004
+Coordinate errors: 0
+Out-of-bounds bboxes: 11
+
+3. CLASS MAPPING
+------------------------------
+Correct mappings: 3
+Incorrect mappings: 0
+
+4. OVERALL ASSESSMENT
+------------------------------
+ISSUES DETECTED - Total errors: 11
+  - Bounding boxes outside image bounds
+
+============================================================

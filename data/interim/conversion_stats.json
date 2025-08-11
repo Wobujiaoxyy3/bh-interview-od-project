@@ -1,0 +1,11 @@
+{
+  "total_images": 2681,
+  "successful_conversions": 2681,
+  "failed_conversions": 0,
+  "total_annotations": 76289,
+  "categories": {
+    "door": 28339,
+    "window": 19236,
+    "room": 28714
+  }
+}
